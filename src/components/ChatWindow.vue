@@ -1,6 +1,5 @@
 <template>
 <div class="container">
-    <div class="space"></div>
     <div class="error" v-if="error">{{error}}</div>
     <div v-if="documents" class="messages card" ref="messages">
         <div v-for="doc in formattedDocuments" :key="doc.id" class="single">
@@ -49,6 +48,10 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
+.card{
+    max-height: 460px;
+    overflow-y: auto;
+}
 
 </style>

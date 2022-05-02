@@ -3,6 +3,8 @@
 </template>
 
 <style>
-
+body {
+  overflow-y: hidden;
+}
 
 </style>

@@ -4,7 +4,7 @@ import Chatroom from "../views/Chatroom.vue";
 import { projectAuth } from '../firebase/config';
 
 //auth guard
-const requiredAuth = (to, from, next) => {
+const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser
   console.log('current user in auth guard: ',user)
   if(!user){
@@ -15,17 +15,28 @@ const requiredAuth = (to, from, next) => {
   
 }
 
+const requireNoAuth = (to, from, next) => {
+  let user = projectAuth.currentUser
+  console.log('current user in auth guard: ',user)
+  if(user){
+    next({ name: 'Chatroom'})
+  } else{
+    next()
+  }
+}
+
 const routes = [
   {
    path: '/' ,
    name: 'Welcome',
-   component: Welcome
+   component: Welcome,
+   beforeEnter: requireNoAuth
   },
   {
     path: '/chatroom',
     name: 'Chatroom',
     component: Chatroom,
-    beforeEnter: requiredAuth
+    beforeEnter: requireAuth
   }
 ]
 

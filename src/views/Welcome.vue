@@ -3,12 +3,14 @@
       <article class="round">
         <h5>Welcome</h5>
         <div v-if="showLogin">
+            <h2>Login to the chatroom</h2>
             <LoginForm @login="enterChat" />
             <p>No account yet ?
                 <a class="link underline" @click="showLogin = false">Register now</a>
             </p>
         </div>
         <div v-else>
+            <h2>Sign up to the chatroom</h2>
             <SignupForm  @signup="enterChat" />
             <p>Already registered ?
                 <a class="link underline" @click="showLogin = true">Login in</a>
